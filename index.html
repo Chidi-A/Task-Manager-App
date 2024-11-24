@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+    <style>
+        .modal-wrapper {
+            display: none;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="header-left">
+          <h1>Today's Tasks</h1>
+          <h5>Wednesday, 12 November 2024</h5>
+        </div>
+        <button>
+          <span class="material-icons">add</span>
+          New Task
+        </button>
+      </div>
+      <div class="filter-bar">
+        <div class="filter-options">
+          <button class="filter-btn active">
+            All <span class="count">3</span>
+          </button>
+          <button class="filter-btn">
+            Active <span class="count">2</span>
+          </button>
+          <button class="filter-btn">
+            Completed <span class="count">1</span>
+          </button>
+        </div>
+        <button class="filter-btn clear-completed">Clear Completed</button>
+      </div>
+      <div class="tasks-info">
+        <h5>You have 2 tasks left to complete today</h5>
+      </div>
+      <div class="task-list"></div>
+    </div>
+    
+    
+    
+    <div class="modal-wrapper">
+      <div class="modal-bg"></div>
+      <div class="modal-container">
+        <h2>New Task</h2>
+        <form class="modal-form">
+          <input type="text" placeholder="Task title">
+          <textarea placeholder="Description"></textarea>
+          <input type="date">
+          <input type="time">
+          <div class="modal-actions">
+            <button class="btn-secondary">Cancel</button>
+            <button class="btn-primary">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    
+    
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

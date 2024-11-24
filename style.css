@@ -1,0 +1,325 @@
+/* Add this at the top of your CSS file */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Base Colors */
+  --base-dark: #1F3E4F;
+  --gray-2: #AEAEB2;
+  --primary-blue: #007AFF;
+  --gray-4: #D1D1D6;
+  --base-accent: #4594C0;
+
+  /* Grid System */
+  --grid-columns: 12;
+  --grid-width: 72px;    /* 4.5rem */
+  --grid-gutter: 24px;   /* 1.5rem */
+  
+  /* Calculate total content width */
+  --content-width: calc((var(--grid-width) * var(--grid-columns)) + 
+                       (var(--grid-gutter) * (var(--grid-columns) - 1)));
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;  /* Optional: removes default body margin */
+}
+
+.container {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 5rem var(--grid-gutter) 0;  /* 80px top, 24px sides, 0 bottom */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.header-left h1,
+.header-left h5 {
+  margin: 0;
+  font-weight: 400;
+}
+
+.header-left h1 {
+  margin: 0;
+  font-weight: 600;
+  color: var(--base-dark);
+  font-size: 2.5rem;
+  letter-spacing: -1.29px;
+}
+
+.header-left h5 {
+  margin: 0;
+  font-weight: 400;
+  color: var(--gray-2);
+}
+
+button {
+  width: 10.625rem;  /* 170px */
+  height: 3rem;      /* 48px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #007AFF;
+  border-radius: 0.625rem;  /* 10px */
+  color: white;
+  border: none;  /* removes the stroke/border */
+  cursor: pointer;
+}
+
+button .material-icons {
+  font-size: 1.25rem;  /* 20px */
+}
+
+.filter-bar,
+.filter-options,
+.filter-btn {
+  margin: 0;
+  padding: 0;
+}
+
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3.875rem;
+}
+
+.filter-options {
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-start;
+}
+
+.filter-btn {
+  background: none;
+  border: none;
+  color: var(--gray-4);  /* Default color for inactive buttons */
+  font: inherit;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  padding: 0;
+  display: inline;
+}
+
+.filter-btn.active {
+  color: var(--primary-blue);  /* Color for active button */
+}
+
+.filter-btn.active .count {
+  background-color: var(--primary-blue);  /* Blue background */
+  color: white;  /* White text */
+}
+
+.filter-btn.clear-completed {
+  color: var(--base-accent);
+  text-decoration: underline;
+}
+
+/* Regular count style */
+.count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--gray-4);
+  color: white;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+  font-size: 0.875rem;  /* 14px */
+}
+
+.tasks-info h5 {
+  margin: 0;
+  font-weight: 400;
+  color: var(--base-accent);  /* #4594C0 */
+  margin-top: 3.875rem;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;  /* 24px top/sides, 16px bottom */
+}
+
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;  /* 24px */
+}
+
+.task-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.task-content h4 {
+  margin: 0;
+  font-weight: 600;
+  color: var(--base-dark);
+  font-size: 1.5rem;  /* 24px */
+  letter-spacing: -0.75px;
+}
+
+.task-content p {
+  margin: 0;
+  font-size: 1.125rem;  /* 18px */
+  color: #8E8E93;
+}
+
+.task-actions {
+  display: flex;
+  gap: 1rem;
+  color: var(--gray-2);  /* You might want to adjust this color */
+}
+
+.task-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #FAFBFC;
+  margin-top: 1.5rem;
+  border-radius: 0.625rem;  /* 10px */
+}
+
+.task-time {
+  display: flex;
+  gap: 0.5rem;
+  color: var(--gray-2);
+  font-size: 0.875rem;  /* 14px */
+  padding-top: 0.5rem;
+  padding-left: 4rem;  /* 40px - matches checkbox width + gap */
+  margin-bottom: 1rem;
+  border-top: 1px solid #E5E5EA;  /* Add the top stroke */
+}
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
+}
+
+.modal-wrapper.show {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.modal-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-container {
+  position: relative;
+  background-color: white;
+  padding: 3rem;
+  border-radius: 0.625rem;
+  z-index: 1;
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+}
+
+.modal-wrapper.show .modal-container {
+  transform: translateY(0);
+}
+
+.modal-container h2 {
+  text-align: center;
+  margin: 0 0 2rem 0;
+  color: var(--base-dark);  /* #1F3E4F */
+  font-size: 2rem;          /* 32px */
+  font-weight: 600;         /* semi-bold */
+  letter-spacing: -1px;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal-form input,
+.modal-form textarea {
+  padding: 0.75rem;
+  border: 1px solid var(--gray-4);
+  border-radius: 0.5rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--base-dark);
+  outline: none;  /* Remove default focus outline */
+  transition: border-color 0.2s ease;  /* Smooth transition for border color */
+}
+
+.modal-form input:focus,
+.modal-form textarea:focus {
+  border-color: var(--primary-blue);  /* #007AFF */
+}
+
+.modal-form textarea {
+  min-height: 6rem;  /* Increase height of description field */
+  resize: vertical;  /* Allows user to resize vertically if needed */
+}
+
+/* Style the placeholders */
+.modal-form input::placeholder,
+.modal-form textarea::placeholder,
+.modal-form input[type="date"]::-webkit-datetime-edit-text,
+.modal-form input[type="date"]::-webkit-datetime-edit-month-field,
+.modal-form input[type="date"]::-webkit-datetime-edit-day-field,
+.modal-form input[type="date"]::-webkit-datetime-edit-year-field,
+.modal-form input[type="time"]::-webkit-datetime-edit-hour-field,
+.modal-form input[type="time"]::-webkit-datetime-edit-minute-field,
+.modal-form input[type="time"]::-webkit-datetime-edit-ampm-field {
+  color: #C7C7CC;  /* Grays/Gray 3 */
+  font-family: 'Inter', sans-serif;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.btn-primary {
+  /* Use your existing button styles */
+  background-color: var(--primary-blue);
+  color: white;
+}
+
+.btn-secondary {
+  /* Similar to primary but with different colors */
+  background-color: transparent;
+  color: var(--gray-2);
+  border: 1px solid var(--gray-4);
+}
+
